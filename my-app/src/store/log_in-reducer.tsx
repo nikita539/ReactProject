@@ -33,12 +33,9 @@ export const LogInAC = (email:string,password:string) => {
 
 
 export const LogInThunk = (email:string,password:string) => {
-    debugger
     return (dispatch:Dispatch) => {
-        debugger
         Api.logIn(email,password)
             .then((res) => {
-                debugger
                 console.log(res.data)
                 dispatch(LogInAC(email,password))
             })
