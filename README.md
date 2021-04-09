@@ -1,3 +1,1 @@
-# OurProject
-# Project
 # ReactProject
