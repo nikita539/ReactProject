@@ -10,7 +10,7 @@ type actionLogINType = {
     verified:boolean
 }
 
-export type stateType = {
+export type stateLoginType = {
     email:string,
     password:string,
     verified:boolean
@@ -19,7 +19,7 @@ export type stateType = {
 
 let initialState = {email:"",password:"",verified:true}
 
-export const logInReducer = (state:stateType,action:actionLogINType) => {
+export const logInReducer = (state:stateLoginType = initialState,action:actionLogINType) => {
     switch (action.type){
         case "LOGIN":
             return {email:action.email,password:action.password,verified:action.verified}
