@@ -1,5 +1,15 @@
 .Register{
-    background-color: red;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     height: 600px;
+
+}
+.Button{
+    margin: 1em;
+}
+.Password{
+    padding: 1em;
 }
