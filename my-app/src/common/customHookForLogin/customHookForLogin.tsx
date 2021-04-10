@@ -1,7 +1,7 @@
 import {useState, useEffect, ChangeEvent, FormEvent} from 'react';
 import {Validate} from "../helpers/validations_rules";
 
-export const useForm = (
+export const useForm = (//d
     callback: () => void,
     validate: (values: Validate) => Validate) => {
 
