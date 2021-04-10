@@ -19,13 +19,10 @@ const LogIn = () => {
 
     const logInSet = () => {
         dispatch(LogInThunk(login,password))
-        // Api.logIn(login,password)
-        //     .then((res) => {
-        //         console.log(res.data)
-        //         dispatch(LogInAC(login,password))
-        //         console.log(store.getState().logIn)
-        //     })
     }
+
+    console.log(store.getState().logIn)
+
 
     const setLoginWithUseState = (value:string) => {
         setLogin(value)

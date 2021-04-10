@@ -7,27 +7,33 @@ type actionLogINType = {
     type:"LOGIN"
     email:string
     password:string
+    verified:boolean
 }
 
-const initialState = {}
+export type stateType = {
+    email:string,
+    password:string,
+    verified:boolean
+}
 
-export const logInReducer = (state:object = initialState,action:actionLogINType) => {
+
+let initialState = {email:"",password:"",verified:true}
+
+export const logInReducer = (state:stateType,action:actionLogINType) => {
     switch (action.type){
         case "LOGIN":
-            return   {
-                email:action.email,
-                password:action.password
-            }
+            return {email:action.email,password:action.password,verified:action.verified}
         default:
             return state
     }
 }
 
-export const LogInAC = (email:string,password:string) => {
+export const LogInAC = (email:string,password:string,verified:boolean) => {
     return {
         type:"LOGIN",
         email,
-        password
+        password,
+        verified
     }
 }
 
@@ -36,8 +42,9 @@ export const LogInThunk = (email:string,password:string) => {
     return (dispatch:Dispatch) => {
         Api.logIn(email,password)
             .then((res) => {
+                debugger
                 console.log(res.data)
-                dispatch(LogInAC(email,password))
+                dispatch(LogInAC(email,password,res.data.verified))
             })
     }
 
