@@ -6,13 +6,13 @@ import {useDispatch, useSelector} from "react-redux";
 import LogInFrom from "./loginForm";
 import {Redirect} from 'react-router-dom'
 import {AppRootStateType, store} from "../../store/store";
-import {stateLoginType} from "../../store/log_in-reducer";
 import {routes} from "../navbar/Navbar";
+import {stateType} from "../../store/log_in-reducer";
 
 const LogIn = () => {
 
     const dispatch = useDispatch()
-    const loginDate = useSelector<AppRootStateType,stateLoginType>(state => state.logIn)
+    const loginDate = useSelector<AppRootStateType,stateType>(state => state.logIn)
     console.log(loginDate.email)
     console.log(loginDate.verified)
 
@@ -20,7 +20,6 @@ const LogIn = () => {
 
     let [login,setLogin] = useState('')
     let [password,setPassword] = useState('')
-    let [errors,setError] = useState('')
 
 
     const logInSet = () => {
@@ -36,9 +35,13 @@ const LogIn = () => {
     }
 
 
-    if(loginDate.verified){
+    if(loginDate.verified === "true"){
         return <Redirect to={routes.forProfile}/>
     }
+    if(loginDate.verified === "false"){
+        return  <Redirect to={routes.forRegister}/>
+    }
+
 
     return <div className={classes.Login}>
         <h1 className={classes.H1} >Login</h1>
