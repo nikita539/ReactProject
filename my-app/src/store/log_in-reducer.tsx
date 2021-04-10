@@ -17,7 +17,7 @@ export type stateLoginType = {
 }
 
 
-let initialState = {email:"",password:"",verified:true}
+let initialState = {email:"",password:"",verified:false}
 
 export const logInReducer = (state:stateLoginType = initialState,action:actionLogINType) => {
     switch (action.type){

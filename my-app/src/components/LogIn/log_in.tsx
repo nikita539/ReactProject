@@ -33,7 +33,7 @@ const LogIn = () => {
     }
 
 
-    if(!loginDate.verified){
+    if(loginDate.verified){
         return <Redirect to={routes.forProfile}/>
     }
 
