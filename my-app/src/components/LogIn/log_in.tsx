@@ -20,10 +20,13 @@ const LogIn = () => {
 
     let [login,setLogin] = useState('')
     let [password,setPassword] = useState('')
+    let [errors,setError] = useState('')
 
 
     const logInSet = () => {
         dispatch(LogInThunk(login,password))
+        setLogin("")
+        setPassword("")
     }
     const setLoginWithUseState = (value:string) => {
         setLogin(value)
