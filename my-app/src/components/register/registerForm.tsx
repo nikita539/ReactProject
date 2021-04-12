@@ -1,5 +1,7 @@
 import React, {ChangeEvent} from "react";
 import style from './register.module.css'
+import {useSelector} from "react-redux";
+import {AppRootStateType} from "../../store/store";
 
 type registerFormType = {
     email: string
@@ -11,7 +13,11 @@ type registerFormType = {
     signUp: () => void
 }
 
+
 const RegisterForm = (props: registerFormType) => {
+
+    const error = useSelector<AppRootStateType, string>(state => state.register.setError)
+
 
     const onChangeLoginHandler = (e: ChangeEvent<HTMLInputElement>) => {
         props.setEmail(e.currentTarget.value)
@@ -24,34 +30,38 @@ const RegisterForm = (props: registerFormType) => {
     }
 
 
-    return (
 
+    return (
 
         <div className={style.Register}>
             <div >
                 <input type="email"
-                       className="form-control"
+                       className={`form-control ${error && 'is-invalid'}`}
                        id="floatingInput"
                        placeholder="Login"
                        value={props.email}
                        onChange={onChangeLoginHandler}/>
             </div>
+
             <div className={style.Password}>
                 <input type="password"
-                       className="form-control"
+                       className={`form-control ${error && 'is-invalid'}`}
                        id="floatingPassword"
                        placeholder="Password"
                        value={props.password}
                        onChange={onChangePasswordHandler}/>
             </div>
+
             <div>
                 <input type="password"
-                       className="form-control"
+                       className={`form-control ${error && 'is-invalid'}`}
                        id="floatingPassword"
                        placeholder="Confirm password"
                        value={props.confirmPassword}
                        onChange={onChangeConfirmPasswordHandler}/>
             </div>
+            {error}
+
             <div className={style.Button}>
                 <button type="button" className="btn btn-primary" onClick={() => props.signUp()}>Sign up</button>
             </div>
