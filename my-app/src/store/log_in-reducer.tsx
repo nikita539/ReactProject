@@ -1,5 +1,5 @@
 import {Dispatch} from 'redux'
-import {Api} from "../../API/API";
+import {Api} from "../API/API";
 
 type verifiedType = "true" | "false" | "none"
 
