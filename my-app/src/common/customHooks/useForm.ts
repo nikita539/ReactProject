@@ -2,7 +2,7 @@ import {useState, useEffect, ChangeEvent, FormEvent} from 'react';
 import {Validate} from "../helpers/validations_rules";
 
 export const useForm = (
-    callback: () => void,
+    callback: () => Promise<void>,
     validate: (values: Validate) => Validate) => {
 
     const [values, setValues] = useState<Validate>({});
@@ -11,7 +11,7 @@ export const useForm = (
 
     useEffect(() => {
         if (Object.keys(errors).length === 0 && isSubmitting) {
-            callback();//d
+            callback();
         }
     }, [errors]);
 
