@@ -2,10 +2,14 @@ import {Dispatch} from 'redux'
 import {Api} from "../API/API";
 
 type actionType = ReturnType<typeof RegisterAC>
+                | ReturnType<typeof ErrorAC>
+
 type initialStateType = typeof initialState
 
+
 const initialState = {
-    isRegistered: false
+    isRegistered: false,
+    setError: ''
 }
 
 
@@ -15,6 +19,10 @@ export const registerReducer = (state: initialStateType = initialState,action:ac
             return   {...state,
                 isRegistered: action.isRegistered
             }
+        case "ERROR":
+            return   {...state,
+                setError: action.error
+            }
         default:
             return state
     }
@@ -22,6 +30,10 @@ export const registerReducer = (state: initialStateType = initialState,action:ac
 export const RegisterAC = (isRegistered: boolean) => ({
     type:"REGISTER",
     isRegistered
+} as const)
+export const ErrorAC = (error: string) => ({
+    type:"ERROR",
+    error
 } as const)
 
 
@@ -31,6 +43,6 @@ export const RegisterTC = (email:string,password:string) => (dispatch:Dispatch) 
             dispatch(RegisterAC(true))
         })
         .catch((error) => {
-            alert(error)
+            dispatch(ErrorAC(error.error))
         })
 }

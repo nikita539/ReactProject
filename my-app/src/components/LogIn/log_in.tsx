@@ -1,13 +1,14 @@
 import React, {useEffect, useState} from "react";
 import './log_in.module.css'
 import classes from './log_in.module.css'
-import {LogInAC, LogInThunk} from "../../store/log_in-reducer";
+import {LogInAC, LogInThunk} from "../../store/login_reducers.ts/log_in-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import LogInFrom from "./loginForm";
 import {Redirect} from 'react-router-dom'
 import {AppRootStateType, store} from "../../store/store";
 import {routes} from "../navbar/Navbar";
-import {stateType} from "../../store/log_in-reducer";
+import {stateType} from "../../store/login_reducers.ts/log_in-reducer";
+import {validate} from "../../common/helpers/validations_rules";
 
 const LogIn = () => {
 
@@ -18,8 +19,9 @@ const LogIn = () => {
 
 
 
-    let [login,setLogin] = useState('')
-    let [password,setPassword] = useState('')
+    let [login,setLogin] = useState<string>('')
+    let [password,setPassword] = useState<string>('')
+    let [error,setError] = useState<any>('')
 
 
     const logInSet = () => {
@@ -31,8 +33,10 @@ const LogIn = () => {
         setLogin(value)
     }
     const setPasswordWithUseState = (value:string) => {
+        if(password.length>5) setError("")
         setPassword(value)
     }
+
 
 
     if(loginDate.verified === "true"){
@@ -45,6 +49,7 @@ const LogIn = () => {
 
     return <div className={classes.Login}>
         <h1 className={classes.H1} >Login</h1>
+        <div>{error}</div>
         <LogInFrom
             email={ login }
             password={ password }

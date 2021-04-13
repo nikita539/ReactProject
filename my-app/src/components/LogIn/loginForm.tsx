@@ -13,7 +13,8 @@ const LogInFrom = (props:propsType) => {
 
 
     return (
-        <div style={{width:"100%",height:'200px'}}>
+        <form onSubmit={(event) => {event.preventDefault()}}>
+            <div style={{width:"100%",height:'200px'}}>
                 <div className="mb-3">
                     <input
                         type="email"
@@ -45,7 +46,8 @@ const LogInFrom = (props:propsType) => {
                     className="btn btn-primary"
                     onClick={() => {props.logInSet()}}
                 >Submit</button>
-        </div>
+            </div>
+        </form>
     )
 }
 
