@@ -1,9 +1,4 @@
-import axios from "axios";
-
-const instance = axios.create({
-    baseURL: "http://localhost:7542/2.0/",
-    withCredentials: true
-})
+import {instance} from "./instance";
 
 
 type pingType = {
@@ -39,6 +34,21 @@ type RegisterType = {
     }
     error?: string
 }
+type profileDateType = {
+    _id:string;
+    email:string;
+    name:string;
+    avatar?:string;
+    publicCardsPacksCount:number;
+
+    created:Date;
+    updated:Date;
+    isAdmin:boolean,
+    verified:boolean,
+    rememberMe:boolean;
+
+    error?:string
+}
 
 export type RecoveryResponseType = {
     info?: string
@@ -63,5 +73,9 @@ export const Api = {
         const message =
             `<div>Your password recover link is <a href='http://localhost:3000/#/set-new-password/$token$'>here</a></div>`
         return instance.post<RecoveryResponseType>("auth/forgot", {email, from, message})
+    },
+    profileDate:() => {
+        const promise = instance.post("auth/me")
+        return promise
     }
 }
