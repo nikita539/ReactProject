@@ -10,7 +10,8 @@ export const routes = {
     forRegister:"/Register",
     foNewPassword:"/New_Password",
     forPasswordRecovery:"/PasswordRecovery",
-    forMistake:"/404"
+    forMistake:"/404",
+    forTable:"/Table"
 }
 
 
@@ -31,6 +32,9 @@ const Navbar = () => {
             </li>
             <li className="nav-item">
                 <NavLink to={routes.forPasswordRecovery} className="nav-link">Password recovery</NavLink>
+            </li>
+            <li className="nav-item">
+                <NavLink to={routes.forTable} className="nav-link">Table</NavLink>
             </li>
             <li className="nav-item">
                 <NavLink to={routes.forMistake} className="nav-link">404</NavLink>

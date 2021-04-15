@@ -17,7 +17,7 @@ type GetPacksRequestType = {
     user_id?: string
 }
 
-type GetPacksResponseType = {
+export type GetPacksResponseType = {
     cardPacks: Array<GetPackType>
     page: number
     pageCount: number
@@ -28,7 +28,7 @@ type GetPacksResponseType = {
     tokenDeathTime?: number
 }
 
-type GetPackType = {
+export type GetPackType = {
     _id: string
     user_id: string
     user_name?: string
