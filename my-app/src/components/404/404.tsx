@@ -7,7 +7,7 @@ const Four = () => {
 
 
     return <div className="Four">
-
+        <div style={{color:"red",fontSize:'60px'}}>404</div>
     </div>
 }
 

@@ -33,7 +33,7 @@ const LogIn = () => {
         }else if (!password){
             dispatch(errorLoginPasswordAC("enter password"))
         }else if (password.length<5){
-            errorLoginPasswordAC("")
+            errorLoginPasswordAC(" ")
         }else {
             dispatch(LogInThunk(email,password))
         }
