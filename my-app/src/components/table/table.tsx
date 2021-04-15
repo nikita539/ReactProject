@@ -8,14 +8,14 @@ const Table = () => {
     useEffect(() => {
         packsAPI.getPacks({})
             .then((res) => {
-                console.log(res.data.cardPacks)
+                console.log(res.data)
                 setMassFromServer(res.data.cardPacks)
             })
     },[])
 
     const massResult = massFromServer.map((i) => {
         return(
-            <tr>
+            <tr >
                 <th>{i.cardsCount}</th>
                 <td>{i.name}</td>
                 <td>{i.user_name}</td>
