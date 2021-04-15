@@ -19,7 +19,11 @@ const Table = () => {
             <td>{t.user_name}</td>
             <td>{t.name}</td>
             <td>{t.updated}</td>
-            <td><button>delete</button></td>
+            <td style={{display:"flex",justifyContent:"space-around"}}>
+                <button type="button" className="btn btn-outline-primary btn-sm">Add</button>
+                <button type="button" className="btn btn-outline-primary btn-sm">Delete</button>
+                <button type="button" className="btn btn-outline-primary btn-sm">Change</button>
+            </td>
         </tr>
     })
 
