@@ -5,6 +5,7 @@ import {logInReducer} from "./log_in-reducer";
 import {registerReducer} from "./register-reducer";
 import {profileReducer} from "./profile-reducer";
 import {loginErrorReducer} from './loginError-reducer'
+import {tableReducer} from "./table-reducer";
 
 
 const rootReducer = combineReducers({
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
     logIn:logInReducer,
     register: registerReducer,
     profileDate:profileReducer,
-    error:loginErrorReducer
+    error:loginErrorReducer,
+    tableData:tableReducer
 })
 
 export const store = createStore(rootReducer,applyMiddleware(thunkMiddleware))

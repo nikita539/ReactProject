@@ -1,29 +1,29 @@
 import React, {useEffect, useState} from "react";
 import {packsAPI,GetPackType} from "../../API/packsAPI";
+import {useDispatch, useSelector} from "react-redux";
+import {AppRootStateType} from "../../store/store";
+import {gettableDataThunk} from '../../store/table-reducer'
 
 const Table = () => {
 
-    const [massFromServer,setMassFromServer] = useState<Array<GetPackType>>([])
+    const tableData = useSelector<AppRootStateType,Array<GetPackType>>(state => state.tableData)
+    const dispatch = useDispatch()
 
     useEffect(() => {
-        packsAPI.getPacks({})
-            .then((res) => {
-                console.log(res.data)
-                setMassFromServer(res.data.cardPacks)
-            })
+        dispatch(gettableDataThunk())
     },[])
 
-    const massResult = massFromServer.map((i) => {
-        return(
-            <tr >
-                <th>{i.cardsCount}</th>
-                <td>{i.name}</td>
-                <td>{i.user_name}</td>
-                <td>{i.rating}</td>
-                <th><button style={{width:"20px",height:"20px"}}/></th>
-            </tr>
-        )
+    const massResult = tableData.map((t) => {
+        return <tr key={t._id}>
+            <th>{t.cardsCount}</th>
+            <td>{t.user_name}</td>
+            <td>{t.name}</td>
+            <td>{t.updated}</td>
+            <td><button>delete</button></td>
+        </tr>
     })
+
+    console.log(tableData[0])
 
     return <table className="table">
             <thead>
