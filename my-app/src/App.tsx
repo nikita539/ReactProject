@@ -23,9 +23,10 @@ function App() {
                 <Route path={routes.foNewPassword} component={NewPassword}/>
                 <Route path={routes.forPasswordRecovery} component={PasswordRecovery}/>
                 <Route path={routes.forMistake} component={Four}/>
-                <div className="TableRender">
-                    <Route path={routes.forTable} component={Table}/>
-                </div>
+                {/*<div className="TableRender">*/}
+                {/*    <Route path={routes.forTable} component={Table}/>*/}
+                {/*</div>*/}
+                <Route path={routes.forTable} component={Table}/>
             </div>
         </div>
         
