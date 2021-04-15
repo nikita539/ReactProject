@@ -3,6 +3,9 @@ import {instance} from "./instance";
 export const packsAPI = {
     getPacks: (params: GetPacksRequestType)=> {
         return instance.get<GetPacksResponseType>('cards/pack', {params})
+    },
+    deleteItemsTable:(id:string) => {
+        return instance.delete(`cards/pack`,{data:id})
     }
 }
 
@@ -16,7 +19,6 @@ type GetPacksRequestType = {
     pageCount?: number
     user_id?: string
 }
-
 export type GetPacksResponseType = {
     cardPacks: Array<GetPackType>
     page: number
@@ -27,7 +29,6 @@ export type GetPacksResponseType = {
     token?: string
     tokenDeathTime?: number
 }
-
 export type GetPackType = {
     _id: string
     user_id: string

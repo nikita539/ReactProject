@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {packsAPI,GetPackType} from "../../API/packsAPI";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../store/store";
-import {gettableDataThunk} from '../../store/table-reducer'
+import {gettableDataThunk,deleteTableItemsThunk} from '../../store/table-reducer'
 
 const Table = () => {
 
@@ -20,9 +20,11 @@ const Table = () => {
             <td>{t.name}</td>
             <td>{t.updated}</td>
             <td>
-                <button type="button" className="btn btn-outline-primary btn-sm">Add</button>
-                <button type="button" className="btn btn-outline-primary btn-sm">Delete</button>
-                <button type="button" className="btn btn-outline-primary btn-sm">Change</button>
+                <button
+                    type="button" className="btn btn-outline-primary btn-sm"
+                    onClick={() => {dispatch(deleteTableItemsThunk(t._id))}}
+                >Delete</button>
+                <button type="button" className="btn btn-outline-primary btn-sm" onClick={() => {alert("hello")}}>Change</button>
             </td>
         </tr>
     })
