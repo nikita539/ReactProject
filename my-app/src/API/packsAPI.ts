@@ -3,15 +3,21 @@ import {instance} from "./instance";
 export const packsAPI = {
     getPacks: (params: GetPacksRequestType)=> {
         return instance.get<GetPacksResponseType>('cards/pack', {params})
+    },
+    getPacksSortUp: (sortPacks: number) => {
+        return instance.get(`cards/pack&sortPacks${1}cardsCount`)
+    },
+    getPacksSortDown: (sortPacks: number) => {
+        return instance.get(`cards/pack&sortPacks${0}cardsCount`)
     }
 }
 
 // types
-type GetPacksRequestType = {
+export type GetPacksRequestType = {
     packName?: string
     min?: number
     max?: number
-    sortPacks?: string
+    sortPacks?: number
     page?: number
     pageCount?: number
     user_id?: string

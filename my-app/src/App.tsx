@@ -8,6 +8,7 @@ import Register from "./components/register/register";
 import NewPassword from "./components/new_password/new_password";
 import Four from "./components/404/404";
 import {PasswordRecovery} from "./components/password-recovery/password_recovery";
+import SortPacks from "./components/SortPacks/SortPacks";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
                 <Route path={"/New_Password"} component={NewPassword}/>
                 <Route path={"/PasswordRecovery"} component={PasswordRecovery}/>
                 <Route path={"/404"} component={Four}/>
+                <Route path={"/SortPacs"} component={SortPacks}/>
             </div>
         </div>
         
