@@ -1,0 +1,31 @@
+.searchBlock {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.input {
+    max-width: 250px;
+    margin-bottom: 30px;
+}
+
+.rangeGroup {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.rangeGroup h5 {
+    margin-bottom: -10px;
+}
+
+.range {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

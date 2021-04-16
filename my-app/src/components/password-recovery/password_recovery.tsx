@@ -61,6 +61,6 @@ export const PasswordRecovery = () => {
                 </form>
             </div>
         </div>
-        <Search minCardsCount={1} maxCardsCount={25}/>
+        <Search />
     </>
 }

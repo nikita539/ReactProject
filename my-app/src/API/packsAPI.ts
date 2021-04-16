@@ -10,7 +10,7 @@ export const packsAPI = {
 }
 
 // types
-type GetPacksRequestType = {
+export type GetPacksRequestType = {
     packName?: string
     min?: number
     max?: number
@@ -26,8 +26,6 @@ export type GetPacksResponseType = {
     cardPacksTotalCount: number
     minCardsCount: number
     maxCardsCount: number
-    token?: string
-    tokenDeathTime?: number
 }
 export type GetPackType = {
     _id: string

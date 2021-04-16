@@ -1,6 +1,7 @@
 import {Dispatch} from "redux"
 import {packsAPI} from "../API/packsAPI";
 import {GetPackType} from "../API/packsAPI"
+import {setRangeForPacksAction} from "./search-reducer";
 
 const getTableType = "GET-TABLE"
 const deleteTableItemType = "DELETE-TABLE-ITEM"
@@ -36,7 +37,7 @@ export const tableReducer = (state:stateTypeTable = initialState,action:actionTy
 
 
 // action creators
-const getTableAC = (tableData:Array<GetPackType>) => {
+export const getTableAC = (tableData:Array<GetPackType>) => {
     return {
         type:getTableType,
         tableData
@@ -58,6 +59,7 @@ export const gettableDataThunk = () => {
             .then((res) => {
                 console.log(res.data)
                 dispatch(getTableAC(res.data.cardPacks))
+                dispatch(setRangeForPacksAction(res.data.minCardsCount, res.data.maxCardsCount))
             })
     }
 }
