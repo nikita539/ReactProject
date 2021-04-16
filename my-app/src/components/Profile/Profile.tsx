@@ -1,12 +1,9 @@
 import React, {useEffect, useState} from "react";
 import "./Profile.module.css"
-import {Api} from "../../API/API";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../store/store";
 import {stateProfileType} from "../../store/profile-reducer";
 import {profileDateThunk} from "../../store/profile-reducer";
-import Pagination from "../pagination/pagination";
-import SortPacks from "../SortPacks/SortPacks";
 
 
 const Profile = () => {
