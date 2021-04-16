@@ -4,6 +4,7 @@ import {GetPackType} from "../API/packsAPI"
 
 const getTableType = "GET-TABLE"
 const deleteTableItemType = "DELETE-TABLE-ITEM"
+const changeNameItem = "CHANGE-NAME"
 
 type stateTypeTable = Array<GetPackType>
 type actionGetTableType = {
@@ -15,9 +16,14 @@ type actionTypeDeleteItem = {
     tableDateDeleted:Array<GetPackType>
     id:string
 }
+type actionTypeChangeNameItem = {
+    type:"CHANGE-NAME"
+}
 
 
-type actionType = actionGetTableType | actionTypeDeleteItem
+type actionType = actionGetTableType
+    | actionTypeDeleteItem
+    | actionTypeChangeNameItem
 
 const initialState:Array<GetPackType> = []
 
@@ -25,7 +31,6 @@ const initialState:Array<GetPackType> = []
 export const tableReducer = (state:stateTypeTable = initialState,action:actionType) => {
     switch (action.type){
         case "GET-TABLE":
-            debugger
             return action.tableData
         case "DELETE-TABLE-TIME":
             return action.tableDateDeleted
@@ -67,6 +72,15 @@ export const deleteTableItemsThunk = (id:string) => {
         packsAPI.deleteItemsTable(id)
             .then((res) => {
                 debugger
+                dispatch(getTableAC(res.data.cardPacks))
+            })
+    }
+}
+export const changeTableItemNameThunk = (_id:string,name:string) => {
+    return(dispatch:Dispatch) => {
+        debugger
+        packsAPI.changeNameItem(_id,name)
+            .then((res) => {
                 dispatch(getTableAC(res.data.cardPacks))
             })
     }

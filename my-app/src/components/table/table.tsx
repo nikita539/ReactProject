@@ -3,6 +3,7 @@ import {packsAPI,GetPackType} from "../../API/packsAPI";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../store/store";
 import {gettableDataThunk,deleteTableItemsThunk} from '../../store/table-reducer'
+import TableItem from "./TableItem";
 
 const Table = () => {
 
@@ -14,24 +15,20 @@ const Table = () => {
     },[])
 
     const massResult = tableData.map((t) => {
-        return <tr key={t._id}>
-            <th>{t.cardsCount}</th>
-            <td>{t.user_name}</td>
-            <td>{t.name}</td>
-            <td>{t.updated}</td>
-            <td>
-                <button
-                    type="button" className="btn btn-outline-primary btn-sm"
-                    onClick={() => {dispatch(deleteTableItemsThunk(t._id))}}
-                >Delete</button>
-                <button type="button" className="btn btn-outline-primary btn-sm" onClick={() => {alert("hello")}}>Change</button>
-            </td>
-        </tr>
+        return <TableItem
+            key={t._id}
+            name={t.name}
+            user_name={t.user_name}
+            cardsCount={t.cardsCount}
+            _id={t._id}
+            updated={t.updated}
+        />
     })
 
     console.log(tableData[0])
 
-    return <table className="table">
+    return <div style={{width:"100%",height:"100%"}}>
+        <table className="table">
             <thead>
             <tr>
                 <th scope="col">#</th>
@@ -45,6 +42,7 @@ const Table = () => {
             {massResult}
             </tbody>
         </table>
+    </div>
 
 
 }
