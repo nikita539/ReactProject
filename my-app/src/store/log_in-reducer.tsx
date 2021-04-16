@@ -50,8 +50,6 @@ export const LogInThunk = (email:string,password:string) => {
     return (dispatch:Dispatch) => {
         Api.logIn(email,password)
             .then((res) => {
-                debugger
-                console.log(res.data)
                 dispatch(LogInAC(email,password,"true"))
             }).catch((error) => {
                 dispatch(LogInAC(email,password,"false"))
