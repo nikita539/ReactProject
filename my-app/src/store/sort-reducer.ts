@@ -39,14 +39,6 @@ export const sortPacksUpTC = (sortPacks: number) => (dispatch: Dispatch) => {
 
 
 
-/*export const RegisterTC = (email:string,password:string) => (dispatch:Dispatch) => {
-    Api.register(email,password)
-        .then((res) => {
-            dispatch(RegisterAC(true))
-        })
-        .catch((error) => {
-            dispatch(ErrorAC(error.error))
-        })
-}*/
+
 
 
