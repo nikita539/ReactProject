@@ -22,7 +22,6 @@ function App() {
                 <Route path={"/New_Password"} component={NewPassword}/>
                 <Route path={"/PasswordRecovery"} component={PasswordRecovery}/>
                 <Route path={"/404"} component={Four}/>
-                <Route path={"/SortPacs"} component={SortPacks}/>
             </div>
         </div>
         

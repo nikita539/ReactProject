@@ -5,10 +5,13 @@ export const packsAPI = {
         return instance.get<GetPacksResponseType>('cards/pack', {params})
     },
     getPacksSortUp: (sortPacks: number) => {
-        return instance.get(`cards/pack&sortPacks${1}cardsCount`)
+        return instance.get(`cards/pack?sortPacks=${1}cardsCount`)
     },
     getPacksSortDown: (sortPacks: number) => {
-        return instance.get(`cards/pack&sortPacks${0}cardsCount`)
+        return instance.get(`cards/pack?sortPacks=${0}cardsCount`)
+    },
+    pagination: (page: number, pageCount: number)=> {
+        return instance.get<GetPacksResponseType>(`cards/pack?page=${page}&pageCount=${pageCount}`)
     }
 }
 

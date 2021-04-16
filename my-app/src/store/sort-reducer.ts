@@ -23,7 +23,7 @@ export const sortReducer = (state: initialStateType = initialState, action: acti
 export const sortPacksAC = (sortPacks: number) => ({type: 'SORT-PACKS', sortCards: sortPacks} as const)
 
 export const sortPacksDownTC = (sortPacks: number) => (dispatch: Dispatch) => {
-    packsAPI.getPacksSortDown(sortPacks)
+    packsAPI.getPacksSortUp(sortPacks)
         .then((res) => {
             console.log(res.data)
             dispatch(sortPacksAC(0))

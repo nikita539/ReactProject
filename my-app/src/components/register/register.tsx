@@ -59,6 +59,7 @@ const Register = () => {
                 signUp={signUp}
             />
 
+
         </div>
 
     </>

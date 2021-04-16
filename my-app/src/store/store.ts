@@ -5,6 +5,7 @@ import {logInReducer} from "./log_in-reducer";
 import {registerReducer} from "./register-reducer";
 import {profileReducer} from "./profile-reducer";
 import {sortReducer} from "./sort-reducer";
+import {paginationReducer} from "./pagination-reducer";
 
 
 const rootReducer = combineReducers({
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
     logIn:logInReducer,
     register: registerReducer,
     profileDate:profileReducer,
-    sortPacks: sortReducer
+    sortPacks: sortReducer,
+    pagination: paginationReducer
 })
 
 export const store = createStore(rootReducer,applyMiddleware(thunkMiddleware))
