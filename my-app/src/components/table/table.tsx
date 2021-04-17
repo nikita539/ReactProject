@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from "react";
-import {packsAPI,GetPackType} from "../../API/packsAPI";
+import {packsAPI, GetPackType} from "../../API/packsAPI";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../store/store";
+import {gettableDataThunk, deleteTableItemsThunk} from '../../store/table-reducer'
+import {Search} from "../search/Search";
 import {gettableDataThunk,deleteTableItemsThunk} from '../../store/table-reducer'
 import TableItem from "./TableItem";
 
@@ -27,24 +29,25 @@ const Table = () => {
 
     console.log(tableData[0])
 
-    return <div style={{width:"100%",height:"100%"}}>
-        <table className="table">
-            <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
-                <th scope="col">Buttons</th>
-            </tr>
-            </thead>
-            <tbody>
-            {massResult}
-            </tbody>
-        </table>
-    </div>
-
-
+    return <>
+        <div>
+            <Search/>
+            <table className="table">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First</th>
+                    <th scope="col">Last</th>
+                    <th scope="col">Handle</th>
+                    <th scope="col">Buttons</th>
+                </tr>
+                </thead>
+                <tbody>
+                {massResult}
+                </tbody>
+            </table>
+        </div>
+    </>
 }
 
 export default Table

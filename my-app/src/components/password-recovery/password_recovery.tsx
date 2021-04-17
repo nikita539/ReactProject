@@ -3,6 +3,7 @@ import styles from "./password_recovery.module.css"
 import {Api} from "../../API/API";
 import {emailValidate} from "../../common/helpers/validations_rules";
 import {useForm} from "../../common/customHooks/useForm";
+import {Search} from "../search/Search";
 
 export const PasswordRecovery = () => {
     let [responseMessage, setResponseMessage] = useState<string | undefined>('')
