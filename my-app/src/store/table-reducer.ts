@@ -68,7 +68,6 @@ export const deleteTableItemsThunk = (id:string) => {
         debugger
         packsAPI.deleteItemsTable(id)
             .then((res) => {
-                debugger
                 dispatch(getTableAC(res.data.cardPacks))
             })
     }

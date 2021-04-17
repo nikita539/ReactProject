@@ -1,56 +1,6 @@
 import {Dispatch} from "redux";
-import {GetPacksResponseType, packsAPI} from "../API/packsAPI";
-import {getTableAC, gettableDataThunk} from "./table-reducer";
-
-/*
-let initialState: GetPacksResponseType = {
-    cardPacks: [],
-    maxCardsCount: 1,
-    minCardsCount: 0,
-    pageCount: 20,
-    page: 1,
-    cardPacksTotalCount: 0
-}
-
-export const packsSearchReducer = (state: SearchStateType = initialState, action: PacksActionsType) => {
-    switch (action.type) {
-        case "GET-PACKS":
-            return {...state, ...action.data}
-        default:
-            return state
-    }
-}
-
-// actions
-export const getPacksAction = (data: GetPacksResponseType) =>
-    ({type: 'GET-PACKS', data}) as const
-
-// thunks
-
-export const getPacks = (searchRequest?: string, minCardsCount?: number, maxCardsCount?: number) =>
-    async (dispatch: Dispatch) => {
-        try {
-            let response = await packsAPI.getPacks({
-                packName: searchRequest, min: minCardsCount, max: maxCardsCount, pageCount: 25})
-            dispatch(getPacksAction(response.data))
-            console.log(response.data)
-        } finally {}
-    }
-
-
-
-// types
-export type SearchStateType = {
-    minCardsCount: number
-    maxCardsCount: number
-}
-
-type PacksActionsType = ReturnType<typeof getPacksAction>
-
-
-*/
-
-
+import {packsAPI} from "../API/packsAPI";
+import {getTableAC} from "./table-reducer";
 
 let initialState: SearchStateType = {
     minCardsCount: 0,

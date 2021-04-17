@@ -61,6 +61,5 @@ export const PasswordRecovery = () => {
                 </form>
             </div>
         </div>
-        <Search />
     </>
 }
