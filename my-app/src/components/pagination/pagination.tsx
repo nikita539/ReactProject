@@ -30,7 +30,7 @@ const Pagination = () => {
             <div>
                 {
                     pages.map(p =>
-                        <button onClick={handlerPagination} className={page === p ? "style.SelectPage" : ''}>{p}</button>
+                        <button onClick={handlerPagination} className={page === p ? style.SelectPage : ''}>{p}</button>
                     )
                 }
             </div>
