@@ -9,7 +9,7 @@ type initialStateType = typeof initialState
 
 const initialState = {
     cardPacksTotalCount: 40,
-    pageCount: 4,
+    pageCount: 10,
     page: 1
 
 }
@@ -19,9 +19,9 @@ export const paginationReducer = (state: initialStateType = initialState, action
         case "CARDS-PACKS-TOTAL-COUNT":
             return {...state, cardPacksTotalCount: action.cardPacksTotalCount}
         case "PAGE-COUNT":
-            return {...state, cardPacksTotalCount: action.pageCount}
+            return {...state, pageCount: action.pageCount}
         case "PAGE":
-            return {...state, cardPacksTotalCount: action.page}
+            return {...state, page: action.page}
         default:
             return state
     }

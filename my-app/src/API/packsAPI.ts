@@ -11,7 +11,7 @@ export const packsAPI = {
         return instance.get(`cards/pack?sortPacks=${0}cardsCount`)
     },
     pagination: (page: number, pageCount: number)=> {
-        return instance.get<GetPacksResponseType>(`cards/pack?page=${page}&pageCount=${pageCount}`)
+        return instance.get<GetPacksResponseType>(`cards/pack?pageCount${pageCount}&page=${page}`)
     }
 }
 

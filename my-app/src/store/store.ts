@@ -15,6 +15,7 @@ const rootReducer = combineReducers({
     profileDate:profileReducer,
     sortPacks: sortReducer,
     pagination: paginationReducer
+
 })
 
 export const store = createStore(rootReducer,applyMiddleware(thunkMiddleware))
