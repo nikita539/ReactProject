@@ -9,6 +9,8 @@ import NewPassword from "./components/new_password/new_password";
 import Four from "./components/404/404";
 import {PasswordRecovery} from "./components/password-recovery/password_recovery";
 import SortPacks from "./components/SortPacks/SortPacks";
+import Table from "./components/table/table";
+import {routes} from "./components/navbar/Navbar";
 
 function App() {
   return (

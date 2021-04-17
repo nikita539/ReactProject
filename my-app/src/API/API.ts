@@ -40,6 +40,7 @@ type profileDataType = {
     name:string,
     avatar?:string,
     publicCardPacksCount:number
+
     created:Date,
     updated:Date,
     isAdmin:boolean,

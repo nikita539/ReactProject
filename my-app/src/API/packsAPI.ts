@@ -12,15 +12,21 @@ export const packsAPI = {
     },
     pagination: (page: number, pageCount: number)=> {
         return instance.get<GetPacksResponseType>(`cards/pack?pageCount${pageCount}&page=${page}`)
+    },
+    deleteItemsTable:(id:string) => {
+        return instance.delete(`cards/pack/${id}`)
+    },
+    changeNameItem:(_id:string,name:string) => {
+        return instance.put('cards/pack',{cardsPack:{_id,name}})
     }
 }
 
 // types
-export type GetPacksRequestType = {
+type GetPacksRequestType = {
     packName?: string
     min?: number
     max?: number
-    sortPacks?: number
+    sortPacks?: string
     page?: number
     pageCount?: number
     user_id?: string

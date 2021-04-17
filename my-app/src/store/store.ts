@@ -6,6 +6,8 @@ import {registerReducer} from "./register-reducer";
 import {profileReducer} from "./profile-reducer";
 import {sortReducer} from "./sort-reducer";
 import {paginationReducer} from "./pagination-reducer";
+import {loginErrorReducer} from './loginError-reducer'
+import {tableReducer} from "./table-reducer";
 
 
 const rootReducer = combineReducers({
@@ -14,8 +16,9 @@ const rootReducer = combineReducers({
     register: registerReducer,
     profileDate:profileReducer,
     sortPacks: sortReducer,
-    pagination: paginationReducer
-
+    pagination: paginationReducer,
+    error:loginErrorReducer,
+    tableData:tableReducer
 })
 
 export const store = createStore(rootReducer,applyMiddleware(thunkMiddleware))
