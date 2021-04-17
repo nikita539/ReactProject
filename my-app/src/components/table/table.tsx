@@ -1,11 +1,12 @@
-import React, {useEffect, useState} from "react";
-import {packsAPI, GetPackType} from "../../API/packsAPI";
+import React, {useEffect} from "react";
+import {GetPackType} from "../../API/packsAPI";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../store/store";
-import {gettableDataThunk, deleteTableItemsThunk} from '../../store/table-reducer'
+import {gettableDataThunk} from '../../store/table-reducer'
 import {Search} from "../search/Search";
-import {gettableDataThunk,deleteTableItemsThunk} from '../../store/table-reducer'
 import TableItem from "./TableItem";
+import Pagination from "../pagination/pagination";
+import SortPacks from "../SortPacks/SortPacks";
 
 const Table = () => {
 
@@ -32,6 +33,8 @@ const Table = () => {
     return <>
         <div>
             <Search/>
+            <Pagination/>
+            <SortPacks/>
             <table className="table">
                 <thead>
                 <tr>

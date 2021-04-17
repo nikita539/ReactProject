@@ -6,6 +6,9 @@ import {registerReducer} from "./register-reducer";
 import {profileReducer} from "./profile-reducer";
 import {loginErrorReducer} from './loginError-reducer'
 import {tableReducer} from "./table-reducer";
+import {sortReducer} from "./sort-reducer";
+import {paginationReducer} from "./pagination-reducer";
+import {packsSearchReducer} from "./search-reducer";
 
 
 const rootReducer = combineReducers({
@@ -14,6 +17,9 @@ const rootReducer = combineReducers({
     register: registerReducer,
     profileDate:profileReducer,
     error:loginErrorReducer,
+    sortPacks: sortReducer,
+    pagination: paginationReducer,
+    packsSearch: packsSearchReducer,
     tableData:tableReducer
 })
 
