@@ -89,4 +89,3 @@ export type SearchStateType = {
 }
 
 type PacksActionsType = ReturnType<typeof setRangeForPacksAction>
-

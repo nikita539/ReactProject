@@ -125,9 +125,4 @@ export const Search = () => {
     );
 };
 
-type SearchPropsType = {
-    minCardsCount: number
-    maxCardsCount: number
-}
-
 
