@@ -13,3 +13,6 @@
 .Password{
     padding: 1em;
 }
+.Error{
+    color: red;
+}

@@ -35,17 +35,17 @@ type RegisterType = {
     error?: string
 }
 type profileDateType = {
-    _id:string;
-    email:string;
-    name:string;
-    avatar?:string;
+    _id:string
+    email:string
+    name:string
+    avatar?:string
     publicCardsPacksCount:number;
 
-    created:Date;
-    updated:Date;
+    created:Date
+    updated:Date
     isAdmin:boolean,
     verified:boolean,
-    rememberMe:boolean;
+    rememberMe:boolean,
 
     error?:string
 }
@@ -75,7 +75,11 @@ export const Api = {
         return instance.post<RecoveryResponseType>("auth/forgot", {email, from, message})
     },
     profileDate:() => {
-        const promise = instance.post("auth/me")
+        const promise = instance.post<any>("auth/me",{})
+        return promise
+    },
+    profileUpdate:(name:string,avatar:string) => {
+        const promise = instance.put("auth/me",{name,avatar})
         return promise
     }
 }

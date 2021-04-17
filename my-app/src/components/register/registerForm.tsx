@@ -60,7 +60,7 @@ const RegisterForm = (props: registerFormType) => {
                        value={props.confirmPassword}
                        onChange={onChangeConfirmPasswordHandler}/>
             </div>
-            {error}
+            {error && <div className="style.Error">{error}</div>}
 
             <div className={style.Button}>
                 <button type="button" className="btn btn-primary" onClick={() => props.signUp()}>Sign up</button>
