@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import {GetPackType} from "../../API/packsAPI";
+import {GetPackType, packsAPI} from "../../API/packsAPI";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../store/store";
 import {gettableDataThunk} from '../../store/table-reducer'
@@ -32,6 +32,8 @@ const Table = () => {
 
     return <>
         <div>
+            <button onClick={() => {packsAPI.postPacks().then((res) => {
+                console.log(res.data)})}}>Add pack</button>
             <Search/>
             <Pagination/>
             <SortPacks/>

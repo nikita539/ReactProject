@@ -17,7 +17,7 @@ export type stateTypeTable = {
 }
 type actionGetTableType = {
     type:"GET-TABLE",
-    tableData:Array<GetPackType>
+    tableData:stateTypeTable
 }
 type actionTypeDeleteItem = {
     type:"DELETE-TABLE-TIME"
@@ -46,7 +46,8 @@ const initialState:stateTypeTable = {
 export const tableReducer = (state:stateTypeTable = initialState,action:actionType) => {
     switch (action.type){
         case "GET-TABLE":
-            return action.tableData
+            state = action.tableData
+            return {...state}
         case "DELETE-TABLE-TIME":
             return action.tableDateDeleted
         default:
@@ -87,7 +88,11 @@ export const deleteTableItemsThunk = (id:string) => {
         debugger
         packsAPI.deleteItemsTable(id)
             .then((res) => {
-                dispatch(getTableAC(res.data.cardPacks))
+                console.log(res.data)
+            })
+        packsAPI.getPacks({})
+            .then((res) => {
+                dispatch(getTableAC(res.data))
             })
     }
 }
@@ -96,7 +101,11 @@ export const changeTableItemNameThunk = (_id:string,name:string) => {
         debugger
         packsAPI.changeNameItem(_id,name)
             .then((res) => {
-                dispatch(getTableAC(res.data.cardPacks))
+                console.log(res.data)
+            })
+        packsAPI.getPacks({})
+            .then((res) => {
+                dispatch(getTableAC(res.data))
             })
     }
 }
