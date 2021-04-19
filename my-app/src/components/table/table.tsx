@@ -7,17 +7,18 @@ import {Search} from "../search/Search";
 import TableItem from "./TableItem";
 import Pagination from "../pagination/pagination";
 import SortPacks from "../SortPacks/SortPacks";
+import {stateTypeTable} from '../../store/table-reducer'
 
 const Table = () => {
 
-    const tableData = useSelector<AppRootStateType,Array<GetPackType>>(state => state.tableData)
+    const tableData = useSelector<AppRootStateType,stateTypeTable>(state => state.tableData)
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(gettableDataThunk())
     },[])
 
-    const massResult = tableData.map((t) => {
+    const massResult = tableData.cardPacks.map((t) => {
         return <TableItem
             key={t._id}
             name={t.name}
@@ -28,7 +29,6 @@ const Table = () => {
         />
     })
 
-    console.log(tableData[0])
 
     return <>
         <div>

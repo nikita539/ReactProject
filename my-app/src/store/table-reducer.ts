@@ -7,7 +7,14 @@ const getTableType = "GET-TABLE"
 const deleteTableItemType = "DELETE-TABLE-ITEM"
 const changeNameItem = "CHANGE-NAME"
 
-type stateTypeTable = Array<GetPackType>
+export type stateTypeTable = {
+    cardPacks: Array<GetPackType>
+    page: number
+    pageCount: number
+    cardPacksTotalCount: number
+    minCardsCount: number
+    maxCardsCount: number
+}
 type actionGetTableType = {
     type:"GET-TABLE",
     tableData:Array<GetPackType>
@@ -26,7 +33,14 @@ type actionType = actionGetTableType
     | actionTypeDeleteItem
     | actionTypeChangeNameItem
 
-const initialState:Array<GetPackType> = []
+const initialState:stateTypeTable = {
+    cardPacks:[],
+    cardPacksTotalCount:0,
+    maxCardsCount:0,
+    minCardsCount:0,
+    page:0,
+    pageCount:0
+}
 
 
 export const tableReducer = (state:stateTypeTable = initialState,action:actionType) => {
@@ -36,13 +50,13 @@ export const tableReducer = (state:stateTypeTable = initialState,action:actionTy
         case "DELETE-TABLE-TIME":
             return action.tableDateDeleted
         default:
-            return [...state]
+            return {...state}
     }
 }
 
 
 // action creators
-export const getTableAC = (tableData:Array<GetPackType>) => {
+export const getTableAC = (tableData:stateTypeTable) => {
     return {
         type:getTableType,
         tableData
@@ -63,7 +77,7 @@ export const gettableDataThunk = () => {
         packsAPI.getPacks({})
             .then((res) => {
                 console.log(res.data)
-                dispatch(getTableAC(res.data.cardPacks))
+                dispatch(getTableAC(res.data))
                 dispatch(setRangeForPacksAction(res.data.minCardsCount, res.data.maxCardsCount))
             })
     }
