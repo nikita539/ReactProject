@@ -8,6 +8,7 @@ type actionLogINType = {
     email:string
     password:string
     verified:verifiedType
+    _id:string
 }
 type resetVerifiedType = {
     type:"RESET"
@@ -23,7 +24,12 @@ type actionLoginType = actionLogINType | resetVerifiedType
 export const logInReducer = (state:stateType = {email:"",password:"",verified:"none"},action:actionLoginType) => {
     switch (action.type){
         case "LOGIN":
-            return {email:action.email,password:action.password,verified:action.verified}
+            return {
+                email:action.email,
+                password:action.password,
+                verified:action.verified,
+                _id:action._id
+            }
         case "RESET":
             return {...state,verified:"none"}
         default:
@@ -36,7 +42,7 @@ export const LogInAC = (email:string,password:string,verified:verifiedType) => {
         type:"LOGIN",
         email,
         password,
-        verified
+        verified,
     }
 }
 export const ResetAC = () => {
@@ -51,6 +57,8 @@ export const LogInThunk = (email:string,password:string) => {
         Api.logIn(email,password)
             .then((res) => {
                 dispatch(LogInAC(email,password,"true"))
+                console.log(res.data._id)
+                console.log(res.data)
             }).catch((error) => {
                 dispatch(LogInAC(email,password,"false"))
         })

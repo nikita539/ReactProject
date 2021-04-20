@@ -4,6 +4,9 @@ export const packsAPI = {
     getPacks: (params: GetPacksRequestType)=> {
         return instance.get<GetPacksResponseType>('cards/pack', {params})
     },
+    postPacks: () => {
+        return instance.post('cards/pack',{cardsPack:{name:"Alina",user_id:'606b7897ca54343f745ebeb1',private:true}})
+    },
     getPacksSortUp: (sortPacks: number) => {
         return instance.get(`cards/pack?sortPacks=${1}cardsCount`)
     },
@@ -14,7 +17,7 @@ export const packsAPI = {
         return instance.get<GetPacksResponseType>(`cards/pack?pageCount${pageCount}&page=${page}`)
     },
     deleteItemsTable:(id:string) => {
-        return instance.delete(`cards/pack/${id}`)
+        return instance.delete(`cards/pack?id=${id}`)
     },
     changeNameItem:(_id:string,name:string) => {
         return instance.put('cards/pack',{cardsPack:{_id,name}})
@@ -22,28 +25,24 @@ export const packsAPI = {
 }
 
 // types
-type GetPacksRequestType = {
+export type GetPacksRequestType = {
     packName?: string
     min?: number
     max?: number
-    sortPacks?: string
+    sortPacks?: number
     page?: number
     pageCount?: number
     user_id?: string
 }
-
-type GetPacksResponseType = {
+export type GetPacksResponseType = {
     cardPacks: Array<GetPackType>
     page: number
     pageCount: number
     cardPacksTotalCount: number
     minCardsCount: number
     maxCardsCount: number
-    token?: string
-    tokenDeathTime?: number
 }
-
-type GetPackType = {
+export type GetPackType = {
     _id: string
     user_id: string
     user_name?: string

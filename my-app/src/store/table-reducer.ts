@@ -1,15 +1,23 @@
 import {Dispatch} from "redux"
 import {packsAPI} from "../API/packsAPI";
 import {GetPackType} from "../API/packsAPI"
+import {setRangeForPacksAction} from "./search-reducer";
 
 const getTableType = "GET-TABLE"
 const deleteTableItemType = "DELETE-TABLE-ITEM"
 const changeNameItem = "CHANGE-NAME"
 
-type stateTypeTable = Array<GetPackType>
+export type stateTypeTable = {
+    cardPacks: Array<GetPackType>
+    page: number
+    pageCount: number
+    cardPacksTotalCount: number
+    minCardsCount: number
+    maxCardsCount: number
+}
 type actionGetTableType = {
     type:"GET-TABLE",
-    tableData:Array<GetPackType>
+    tableData:stateTypeTable
 }
 type actionTypeDeleteItem = {
     type:"DELETE-TABLE-TIME"
@@ -25,23 +33,31 @@ type actionType = actionGetTableType
     | actionTypeDeleteItem
     | actionTypeChangeNameItem
 
-const initialState:Array<GetPackType> = []
+const initialState:stateTypeTable = {
+    cardPacks:[],
+    cardPacksTotalCount:0,
+    maxCardsCount:0,
+    minCardsCount:0,
+    page:0,
+    pageCount:0
+}
 
 
 export const tableReducer = (state:stateTypeTable = initialState,action:actionType) => {
     switch (action.type){
         case "GET-TABLE":
-            return action.tableData
+            state = action.tableData
+            return {...state}
         case "DELETE-TABLE-TIME":
             return action.tableDateDeleted
         default:
-            return [...state]
+            return {...state}
     }
 }
 
 
 // action creators
-const getTableAC = (tableData:Array<GetPackType>) => {
+export const getTableAC = (tableData:stateTypeTable) => {
     return {
         type:getTableType,
         tableData
@@ -62,7 +78,8 @@ export const gettableDataThunk = () => {
         packsAPI.getPacks({})
             .then((res) => {
                 console.log(res.data)
-                dispatch(getTableAC(res.data.cardPacks))
+                dispatch(getTableAC(res.data))
+                dispatch(setRangeForPacksAction(res.data.minCardsCount, res.data.maxCardsCount))
             })
     }
 }
@@ -71,8 +88,11 @@ export const deleteTableItemsThunk = (id:string) => {
         debugger
         packsAPI.deleteItemsTable(id)
             .then((res) => {
-                debugger
-                dispatch(getTableAC(res.data.cardPacks))
+                console.log(res.data)
+            })
+        packsAPI.getPacks({})
+            .then((res) => {
+                dispatch(getTableAC(res.data))
             })
     }
 }
@@ -81,7 +101,11 @@ export const changeTableItemNameThunk = (_id:string,name:string) => {
         debugger
         packsAPI.changeNameItem(_id,name)
             .then((res) => {
-                dispatch(getTableAC(res.data.cardPacks))
+                console.log(res.data)
+            })
+        packsAPI.getPacks({})
+            .then((res) => {
+                dispatch(getTableAC(res.data))
             })
     }
 }

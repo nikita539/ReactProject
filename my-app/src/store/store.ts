@@ -4,10 +4,11 @@ import {userReducer} from "./user-reducer";
 import {logInReducer} from "./log_in-reducer";
 import {registerReducer} from "./register-reducer";
 import {profileReducer} from "./profile-reducer";
-import {sortReducer} from "./sort-reducer";
-import {paginationReducer} from "./pagination-reducer";
 import {loginErrorReducer} from './loginError-reducer'
 import {tableReducer} from "./table-reducer";
+import {sortReducer} from "./sort-reducer";
+import {paginationReducer} from "./pagination-reducer";
+import {packsSearchReducer} from "./search-reducer";
 
 
 const rootReducer = combineReducers({
@@ -15,9 +16,10 @@ const rootReducer = combineReducers({
     logIn:logInReducer,
     register: registerReducer,
     profileDate:profileReducer,
+    error:loginErrorReducer,
     sortPacks: sortReducer,
     pagination: paginationReducer,
-    error:loginErrorReducer,
+    packsSearch: packsSearchReducer,
     tableData:tableReducer
 })
 
