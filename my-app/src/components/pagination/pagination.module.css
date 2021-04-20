@@ -1,5 +1,14 @@
 .SelectPage{
     font-weight: bold;
     background-color: cornflowerblue;
-
+}
+.ButtonStyle{
+    color: black;
+}
+.SelectWithButtons{
+    display: flex;
+    margin-left: 80%;
+}
+.Selector{
+    height: 100%;
 }
