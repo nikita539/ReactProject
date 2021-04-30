@@ -32,7 +32,7 @@ const Cards = () => {
     return (
         <>
             <div>
-                <button onClick={() => {}}>ADD</button>
+                <button onClick={() => {dispatch(addCardsThunk("60898e982a479522c8069a56"))}}>ADD</button>
             </div>
             <div style={{width:"100%",height:"100%"}}>
                 <table className="table">

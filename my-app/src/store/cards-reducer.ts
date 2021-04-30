@@ -68,6 +68,10 @@ export const addCardsThunk = (packsID:string) => {
     return (dispatch:Dispatch) => {
         cardsAPI.addCards(packsID)
             .then((res) => {
+                console.log(res.data)
+            })
+        cardsAPI.getCards({cardsPack_id:packsID})
+            .then((res) => {
                 dispatch(addCardAC(res.data))
             })
     }
