@@ -8,6 +8,7 @@ import {AppRootStateType} from "../../store/store";
 import {stateCardsType} from '../../store/cards-reducer'
 import {Redirect} from 'react-router-dom'
 import {routes} from "../navbar/Navbar";
+import {packIDReducer,packIDAC} from "../../store/packIDReducer";
 
 
 type propsType = {
@@ -27,6 +28,7 @@ const TableItem = React.memo((props:propsType) => {
 
     const onClickHandler = () => {
         dispatch(getCardsThunk(props._id))
+        dispatch(packIDAC(props._id))
     }
 
     if(card.redirect){

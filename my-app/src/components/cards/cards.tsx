@@ -13,6 +13,7 @@ import {routes} from "../navbar/Navbar";
 const Cards = () => {
 
     const cards = useSelector<AppRootStateType,stateCardsType>(state => state.cards)
+    const packID = useSelector<AppRootStateType,string>(state => state.idPack)
     const dispatch = useDispatch()
 
     console.log(cards)
@@ -32,7 +33,7 @@ const Cards = () => {
     return (
         <>
             <div>
-                <button onClick={() => {dispatch(addCardsThunk("60898e982a479522c8069a56"))}}>ADD</button>
+                <button onClick={() => {dispatch(addCardsThunk(packID))}}>ADD</button>
             </div>
             <div style={{width:"100%",height:"100%"}}>
                 <table className="table">

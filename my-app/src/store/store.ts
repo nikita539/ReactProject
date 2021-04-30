@@ -10,6 +10,7 @@ import {sortReducer} from "./sort-reducer";
 import {paginationReducer} from "./pagination-reducer";
 import {packsSearchReducer} from "./search-reducer";
 import {cardReducer} from "./cards-reducer";
+import {packIDReducer} from "./packIDReducer";
 
 
 const rootReducer = combineReducers({
@@ -22,7 +23,8 @@ const rootReducer = combineReducers({
     pagination: paginationReducer,
     packsSearch: packsSearchReducer,
     tableData:tableReducer,
-    cards:cardReducer
+    cards:cardReducer,
+    idPack:packIDReducer
 })
 
 export const store = createStore(rootReducer,applyMiddleware(thunkMiddleware))
