@@ -3,6 +3,9 @@ import {instance} from "./instance";
 export const cardsAPI = {
     getCards: (params: CardRequestType) => {
         return instance.get<CardsResponseType>('cards/card', {params})
+    },
+    addCards:(packs_ID:string) => {
+        return instance.post<CardsResponseType>("cards/card",{card:{cardsPack_id:packs_ID}})
     }
 }
 

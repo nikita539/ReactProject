@@ -15,17 +15,26 @@ const initialState = {
 export type stateCardsType = CardsResponseType & {redirect?:boolean}
 
 
-type actionType = {
+type actionTypeGetCards = {
     type:"GET-CARD"
     newState:CardsResponseType
     redirect:boolean
 }
+type actionTypeAddCards = {
+    type:"ADD-CARDS"
+    newState:CardsResponseType
+}
+type actionType = actionTypeAddCards | actionTypeGetCards
+
 
 export const cardReducer = (state:stateCardsType = initialState,action:actionType) => {
     switch (action.type){
         case "GET-CARD":
             state = action.newState
             state.redirect = action.redirect
+            return {...state}
+        case "ADD-CARDS":
+            state = action.newState
             return {...state}
         default:
             return  {...state}
@@ -39,6 +48,12 @@ const getCardsAC = (newSate:CardsResponseType,redirect:boolean) => {
         redirect
     }
 }
+const addCardAC = (newState:CardsResponseType) => {
+    return {
+        type:"GET-CARD",
+        newState
+    }
+}
 
 export const getCardsThunk = (packsID:string) => {
     return (dispatch:Dispatch) => {
@@ -46,6 +61,14 @@ export const getCardsThunk = (packsID:string) => {
             .then((res) => {
                 dispatch(getCardsAC(res.data,true))
                 console.log(res.data)
+            })
+    }
+}
+export const addCardsThunk = (packsID:string) => {
+    return (dispatch:Dispatch) => {
+        cardsAPI.addCards(packsID)
+            .then((res) => {
+                dispatch(addCardAC(res.data))
             })
     }
 }
