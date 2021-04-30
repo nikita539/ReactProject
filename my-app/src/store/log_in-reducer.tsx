@@ -13,23 +13,33 @@ type actionLogINType = {
 type resetVerifiedType = {
     type:"RESET"
 }
+type typeLoginForCatch = {
+    type:"LOGIN-CATCH"
+    email:string
+    password:string
+    verified:verifiedType
+}
 export type stateType = {
     email:string,
     password:string,
-    verified:verifiedType
+    verified:verifiedType,
+    _id:string
 }
 
-type actionLoginType = actionLogINType | resetVerifiedType
 
-export const logInReducer = (state:stateType = {email:"",password:"",verified:"none"},action:actionLoginType) => {
+type actionLoginType = actionLogINType | resetVerifiedType | typeLoginForCatch
+
+export const logInReducer = (state:stateType = {email:"",password:"",verified:"none",_id:""},action:actionLoginType) => {
     switch (action.type){
         case "LOGIN":
             return {
-                email:action.email,
-                password:action.password,
-                verified:action.verified,
+                email: action.email,
+                password: action.password,
+                verified: action.verified,
                 _id:action._id
             }
+        case "LOGIN-CATCH":
+            return {...state,verified: action.verified}
         case "RESET":
             return {...state,verified:"none"}
         default:
@@ -37,12 +47,19 @@ export const logInReducer = (state:stateType = {email:"",password:"",verified:"n
     }
 }
 
-export const LogInAC = (email:string,password:string,verified:verifiedType) => {
+export const LogInAC = (email:string,password:string,verified:verifiedType,_id:string) => {
     return {
         type:"LOGIN",
         email,
         password,
         verified,
+        _id
+    }
+}
+export const LoginCatchAC = (ver:verifiedType) => {
+    return {
+        type:"LOGIN-CATCH",
+        verified:ver
     }
 }
 export const ResetAC = () => {
@@ -56,11 +73,9 @@ export const LogInThunk = (email:string,password:string) => {
     return (dispatch:Dispatch) => {
         Api.logIn(email,password)
             .then((res) => {
-                dispatch(LogInAC(email,password,"true"))
-                console.log(res.data._id)
-                console.log(res.data)
+                dispatch(LogInAC(email,password,"true",res.data._id))
             }).catch((error) => {
-                dispatch(LogInAC(email,password,"false"))
+                dispatch(LoginCatchAC("false"))
         })
     }
 

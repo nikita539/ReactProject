@@ -25,8 +25,7 @@ export const searchPacks = (searchRequest?: string, minCardsCount?: number, maxC
     async (dispatch: Dispatch) => {
         try {
             let response = await packsAPI.getPacks({
-                packName: searchRequest, max: maxCardsCount, min: minCardsCount
-            })
+                packName: searchRequest, max: maxCardsCount, min: minCardsCount})
             dispatch(getTableAC(response.data))
             console.log(response.data)
         } finally {}

@@ -2,10 +2,7 @@ import {Dispatch} from "redux"
 import {packsAPI} from "../API/packsAPI";
 import {GetPackType} from "../API/packsAPI"
 import {setRangeForPacksAction} from "./search-reducer";
-
 const getTableType = "GET-TABLE"
-const deleteTableItemType = "DELETE-TABLE-ITEM"
-const changeNameItem = "CHANGE-NAME"
 
 export type stateTypeTable = {
     cardPacks: Array<GetPackType>
@@ -19,19 +16,9 @@ type actionGetTableType = {
     type:"GET-TABLE",
     tableData:stateTypeTable
 }
-type actionTypeDeleteItem = {
-    type:"DELETE-TABLE-TIME"
-    tableDateDeleted:Array<GetPackType>
-    id:string
-}
-type actionTypeChangeNameItem = {
-    type:"CHANGE-NAME"
-}
 
 
 type actionType = actionGetTableType
-    | actionTypeDeleteItem
-    | actionTypeChangeNameItem
 
 const initialState:stateTypeTable = {
     cardPacks:[],
@@ -43,13 +30,13 @@ const initialState:stateTypeTable = {
 }
 
 
+
+
 export const tableReducer = (state:stateTypeTable = initialState,action:actionType) => {
     switch (action.type){
         case "GET-TABLE":
             state = action.tableData
             return {...state}
-        case "DELETE-TABLE-TIME":
-            return action.tableDateDeleted
         default:
             return {...state}
     }
@@ -63,19 +50,13 @@ export const getTableAC = (tableData:stateTypeTable) => {
         tableData
     }
 }
-const deleteTableItemAC = (id:string,tableDateDeleted:Array<GetPackType>) => {
-    return {
-        type:deleteTableItemType,
-        tableDateDeleted,
-        id
-    }
-}
+
 
 
 //thunks
-export const gettableDataThunk = () => {
+export const gettableDataThunk = (id:string) => {
     return(dispatch:Dispatch) => {
-        packsAPI.getPacks({})
+        packsAPI.getPacks({user_id:id})
             .then((res) => {
                 console.log(res.data)
                 dispatch(getTableAC(res.data))
@@ -83,23 +64,34 @@ export const gettableDataThunk = () => {
             })
     }
 }
-export const deleteTableItemsThunk = (id:string) => {
+export const deleteTableItemsThunk = (id:string,userId:string) => {
     return(dispatch:Dispatch) => {
-        debugger
         packsAPI.deleteItemsTable(id)
             .then((res) => {
                 console.log(res.data)
             })
-        packsAPI.getPacks({})
+        packsAPI.getPacks({user_id:userId})
             .then((res) => {
                 dispatch(getTableAC(res.data))
             })
     }
 }
-export const changeTableItemNameThunk = (_id:string,name:string) => {
+export const changeTableItemNameThunk = (_id:string,name:string,userId:string) => {
     return(dispatch:Dispatch) => {
         debugger
         packsAPI.changeNameItem(_id,name)
+            .then((res) => {
+                console.log(res.data)
+            })
+        packsAPI.getPacks({user_id:userId})
+            .then((res) => {
+                dispatch(getTableAC(res.data))
+            })
+    }
+}
+export const addItemTableThunk = (name:string,id:string) => {
+    return (dispatch:Dispatch) => {
+        packsAPI.postPacks(name,id)
             .then((res) => {
                 console.log(res.data)
             })

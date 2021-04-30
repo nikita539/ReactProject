@@ -8,10 +8,11 @@ type propsType = {
     user_name:string | undefined
     cardsCount:number
     _id:string
+    userId:string
     updated:string
 }
 
-const TableItem = (props:propsType) => {
+const TableItem = React.memo((props:propsType) => {
 
     const dispatch = useDispatch()
 
@@ -19,17 +20,21 @@ const TableItem = (props:propsType) => {
     return  <tr key={props._id}>
         <th>{props.cardsCount}</th>
         <td>{props.user_name}</td>
-        <TableItemName name={props.name} _id={props._id}/>
+        <TableItemName
+            name={props.name}
+            userId={props.userId}
+            _id={props._id}
+        />
         <td>{props.updated}</td>
         <td>
             <button
                 type="button" className="btn btn-outline-primary btn-sm"
-                onClick={() => {dispatch(deleteTableItemsThunk(props._id))}}
+                onClick={() => {dispatch(deleteTableItemsThunk(props._id,props.userId))}}
             >Delete</button>
             <button type="button" className="btn btn-outline-primary btn-sm" onClick={() => {alert("hello")}}>Change</button>
         </td>
     </tr>
-}
+})
 
 
 export default TableItem;

@@ -40,8 +40,6 @@ export const paginationTC = (page: number, pageCount: number) => (dispatch: Disp
         .then((res) => {
             dispatch(pageAC(page))
             dispatch(pageCountAC(pageCount))
-
-
         })
 }
 

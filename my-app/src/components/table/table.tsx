@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useMemo} from "react";
 import {GetPackType, packsAPI} from "../../API/packsAPI";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../store/store";
@@ -8,19 +8,24 @@ import TableItem from "./TableItem";
 import Pagination from "../pagination/pagination";
 import SortPacks from "../SortPacks/SortPacks";
 import {stateTypeTable} from '../../store/table-reducer'
+import AddTableItem from "./addTableItem";
+import {stateType} from "../../store/log_in-reducer";
 
 const Table = () => {
 
     const tableData = useSelector<AppRootStateType,stateTypeTable>(state => state.tableData)
+    const login = useSelector<AppRootStateType,stateType>(state => state.logIn)
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(gettableDataThunk())
-    },[])
+        dispatch(gettableDataThunk(login._id))
+    },[login._id])
 
-    const massResult = tableData.cardPacks.map((t) => {
+
+    const massResult = tableData.cardPacks.map((t:any) => {
         return <TableItem
             key={t._id}
+            userId={login._id}
             name={t.name}
             user_name={t.user_name}
             cardsCount={t.cardsCount}
@@ -30,13 +35,15 @@ const Table = () => {
     })
 
 
+        // <button onClick={() => {packsAPI.postPacks().then((res) => {
+        // console.log(res.data)})}}>Add pack</button>
+
     return <>
         <div>
-            <button onClick={() => {packsAPI.postPacks().then((res) => {
-                console.log(res.data)})}}>Add pack</button>
             <Search/>
             <Pagination/>
             <SortPacks/>
+            <AddTableItem/>
             <table className="table">
                 <thead>
                 <tr>

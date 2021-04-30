@@ -1,11 +1,13 @@
 import {instance} from "./instance";
 
+// 606b7897ca54343f745ebeb1
+
 export const packsAPI = {
-    getPacks: (params: GetPacksRequestType)=> {
-        return instance.get<GetPacksResponseType>('cards/pack?user_id=' + "606b7897ca54343f745ebeb1", {params})
+    getPacks: (params:GetPacksRequestType)=> {
+        return instance.get<GetPacksResponseType>('cards/pack',{params} )
     },
-    postPacks: () => {
-        return instance.post('cards/pack',{cardsPack:{name:"Alina",user_id:'606b7897ca54343f745ebeb1',private:true}})
+    postPacks: (name:string,id:string) => {
+        return instance.post('cards/pack',{cardsPack:{name:name,user_id:id,private:true}})
     },
     getPacksSortUp: (sortPacks: number) => {
         return instance.get(`cards/pack?sortPacks=${1}cardsCount`)
@@ -61,4 +63,3 @@ export type GetPackType = {
     more_id?: string
     __v: number
 }
-

@@ -18,9 +18,11 @@ const LogIn = () => {
     const loginDate = useSelector<AppRootStateType,stateType>(state => state.logIn)
     console.log(loginDate.email)
     console.log(loginDate.verified)
+    console.log(loginDate._id)
 
     let [email,setEmail] = useState<string>("")
     let [password,setPassword] = useState<string>("")
+
 
     // Functions
     const logIn = () => {

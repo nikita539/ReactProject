@@ -5,6 +5,7 @@ import {changeTableItemNameThunk} from '../../store/table-reducer';
 type propsType = {
     _id:string
     name:string
+    userId:string
 }
 
 const TableItemName = (props:propsType) => {
@@ -15,7 +16,7 @@ const TableItemName = (props:propsType) => {
 
     const onDoubleClickHandler = () => {
         setEditMode(!editMode)
-        dispatch(changeTableItemNameThunk(props._id,name))
+        dispatch(changeTableItemNameThunk(props._id,name,props.userId))
     }
 
 
