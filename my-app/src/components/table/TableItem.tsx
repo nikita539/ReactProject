@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {deleteTableItemsThunk} from "../../store/table-reducer";
 import {useDispatch} from "react-redux";
 import TableItemName from "./tableItemName";
+import Cards from "../cards/cards";
 
 type propsType = {
     name:string
@@ -31,7 +32,9 @@ const TableItem = React.memo((props:propsType) => {
                 type="button" className="btn btn-outline-primary btn-sm"
                 onClick={() => {dispatch(deleteTableItemsThunk(props._id,props.userId))}}
             >Delete</button>
-            <button type="button" className="btn btn-outline-primary btn-sm" onClick={() => {alert("hello")}}>Change</button>
+            <button
+                type="button" className="btn btn-outline-primary btn-sm"
+                onClick={() => {}}>Cards</button>
         </td>
     </tr>
 })

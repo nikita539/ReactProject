@@ -11,6 +11,7 @@ import {PasswordRecovery} from "./components/password-recovery/password_recovery
 import SortPacks from "./components/SortPacks/SortPacks";
 import Table from "./components/table/table";
 import {routes} from "./components/navbar/Navbar";
+import Cards from "./components/cards/cards";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
                 <Route path={routes.forPasswordRecovery} component={PasswordRecovery}/>
                 <Route path={routes.forTable} component={Table}/>
                 <Route path={routes.forMistake} component={Four}/>
+                <Route path={routes.forCards} component={Cards}/>
             </div>
         </div>
         
