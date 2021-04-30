@@ -1,8 +1,14 @@
 import React, {useState} from "react";
 import {deleteTableItemsThunk} from "../../store/table-reducer";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import TableItemName from "./tableItemName";
 import Cards from "../cards/cards";
+import {getCardsThunk} from "../../store/cards-reducer";
+import {AppRootStateType} from "../../store/store";
+import {stateCardsType} from '../../store/cards-reducer'
+import {Redirect} from 'react-router-dom'
+import {routes} from "../navbar/Navbar";
+
 
 type propsType = {
     name:string
@@ -16,6 +22,17 @@ type propsType = {
 const TableItem = React.memo((props:propsType) => {
 
     const dispatch = useDispatch()
+    const card = useSelector<AppRootStateType,stateCardsType>(state => state.cards)
+
+
+    const onClickHandler = () => {
+        dispatch(getCardsThunk(props._id))
+    }
+
+    if(card.redirect){
+        return <Redirect to={routes.forCards}/>
+    }
+
 
 
     return  <tr key={props._id}>
@@ -34,7 +51,7 @@ const TableItem = React.memo((props:propsType) => {
             >Delete</button>
             <button
                 type="button" className="btn btn-outline-primary btn-sm"
-                onClick={() => {}}>Cards</button>
+                onClick={onClickHandler}>Cards</button>
         </td>
     </tr>
 })

@@ -1,23 +1,47 @@
 import React, {useEffect} from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {getCardsThunk} from "../../store/cards-reducer";
+import {AppRootStateType} from "../../store/store";
+import {stateCardsType} from '../../store/cards-reducer'
+import {Redirect} from 'react-router-dom'
+import {routes} from "../navbar/Navbar";
 
 
-type propsType = {
-    packID:string
-}
-
-const Cards = (props:propsType) => {
-
-    const dispatch = useDispatch()
-
-    useEffect(() => {
-        dispatch(getCardsThunk(props.packID))
-    },[])
 
 
-    return <div>
 
+const Cards = () => {
+
+    const cards = useSelector<AppRootStateType,stateCardsType>(state => state.cards)
+
+    console.log(cards)
+
+
+    const mass = cards.cards.map(t => {
+        return (
+            <tr>
+                <th scope="row">1</th>
+                <td>{t._id}</td>
+                <td>{t.grade}</td>
+                <td>{t.rating}</td>
+            </tr>
+        )
+    })
+
+    return <div style={{width:"100%",height:"100%"}}>
+        <table className="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">Handle</th>
+            </tr>
+            </thead>
+            <tbody>
+            {mass}
+            </tbody>
+        </table>
     </div>
 }
 
