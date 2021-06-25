@@ -25,14 +25,12 @@ export const sortPacksAC = (sortPacks: number) => ({type: 'SORT-PACKS', sortCard
 export const sortPacksDownTC = (sortPacks: number) => (dispatch: Dispatch) => {
     packsAPI.getPacksSortUp(sortPacks)
         .then((res) => {
-            console.log(res.data)
             dispatch(sortPacksAC(0))
         })
 }
 export const sortPacksUpTC = (sortPacks: number) => (dispatch: Dispatch) => {
     packsAPI.getPacksSortDown(sortPacks)
         .then((res) => {
-            console.log(res.data)
             dispatch(sortPacksAC(1))
         })
 }

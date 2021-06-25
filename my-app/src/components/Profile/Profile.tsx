@@ -4,8 +4,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../store/store";
 import {stateProfileType} from "../../store/profile-reducer";
 import {profileDateThunk} from "../../store/profile-reducer";
-import Pagination from "../pagination/pagination";
-import SortPacks from "../SortPacks/SortPacks";
 
 
 const Profile = () => {
@@ -20,8 +18,7 @@ const Profile = () => {
 
 
     return <div className="Profile">
-        <Pagination/>
-        <SortPacks/>
+
         <h1>Profile</h1>
         <div>{profileData.name}</div>
         <div>
